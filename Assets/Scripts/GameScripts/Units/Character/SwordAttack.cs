@@ -8,11 +8,13 @@ public class SwordAttack : MonoBehaviour
 
     private CharacterInputController _inputController;
     private SpriteRenderer _sprite;
+    private AudioSource _swordSound;
 
     private void Start()
     {
         _inputController = GetComponent<CharacterInputController>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
+        _swordSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -24,6 +26,7 @@ public class SwordAttack : MonoBehaviour
     {
         if(_inputController.hitAnimationStart == false)
         {
+            _swordSound.enabled = true;
             _inputController.hitAnimationStart = true;
             ActivateHitBox();
         }
@@ -48,6 +51,7 @@ public class SwordAttack : MonoBehaviour
         yield return new WaitForSeconds(RechargeAttack);
         _hitBox.SetActive(false);
         _inputController.hitAnimationStart = false;
+        _swordSound.enabled = false;
 
     }
 }

@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class ExitScript : MonoBehaviour
@@ -10,6 +9,6 @@ public class ExitScript : MonoBehaviour
     public void ExitInMenu()
     {
         _dataController.SaveData();
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

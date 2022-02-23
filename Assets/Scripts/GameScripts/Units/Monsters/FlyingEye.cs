@@ -45,7 +45,8 @@ public class FlyingEye : Monsters
     private void Move()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + transform.up * 0.5f + transform.right * _direction.x * 1f, 0.2f);
-        if (colliders.Length > 0 && colliders.All(n => !n.GetComponent<CharacterInputController>()))
+        bool isCharacter = colliders.All(n => n.GetComponent<CharacterInputController>() || n.GetComponent<HitBoxScript>());
+        if (colliders.Length > 0 && !isCharacter)
             _direction *= -1f;
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + _direction, speed * Time.deltaTime);
